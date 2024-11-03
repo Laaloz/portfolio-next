@@ -67,6 +67,12 @@ nav {
   width: fit-content;
   margin-left: auto;
   margin-top: 1rem;
+
+  a {
+    &.active {
+      text-decoration: underline;
+    }
+  }
 }
 
 .mobile-switcher {
