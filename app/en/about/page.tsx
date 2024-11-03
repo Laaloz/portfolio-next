@@ -4,6 +4,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: "Laalo Ceesay - About",
+    description: "About page - Laalo Ceesay",
 };
 
 const AboutPage = () => {
