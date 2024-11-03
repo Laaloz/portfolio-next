@@ -29,6 +29,12 @@ a {
   color: var(--foreground);
 }
 
+input,
+textarea {
+  border-radius: 0 !important;
+
+}
+
 .langs {
   font-size: 0.875rem;
 }

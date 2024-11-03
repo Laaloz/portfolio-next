@@ -57,8 +57,8 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  row-gap: 0.5rem;
-  background: rgba(255, 255, 255, 0.05);
+  row-gap: 1rem;
+  background: #252525;
   border-radius: 14px;
   box-shadow: 0 4px 30px rgba(240, 238, 238, 0.03);
   backdrop-filter: blur(5px);

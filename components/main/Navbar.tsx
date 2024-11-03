@@ -2,7 +2,12 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
-import { WindowIcon, ClockIcon } from "@heroicons/react/24/solid";
+import {
+    WindowIcon,
+    ClockIcon,
+    Bars2Icon,
+    XMarkIcon,
+} from "@heroicons/react/24/solid";
 import LanguageSwitcher from "./languageSwitcher"; // Ensure correct import case
 import { useLanguage } from "./languageContext";
 import Clock from "react-live-clock";
@@ -123,7 +128,11 @@ const Navbar: React.FC = () => {
                             aria-expanded={isOpen}
                             aria-label="Open main menu"
                         >
-                            ☰
+                            {isOpen ? (
+                                <XMarkIcon className="h-6 w-6" />
+                            ) : (
+                                <Bars2Icon className="h-6 w-6" />
+                            )}
                         </button>
                     </div>
                 </div>
@@ -140,7 +149,7 @@ const Navbar: React.FC = () => {
                         />
                     </div>
 
-                    <div className="flex flex-col gap-3 justify-end items-end">
+                    <div className="flex flex-col gap-4 justify-end items-end">
                         {Object.keys(links).map((key) => {
                             const typedKey = key as LinkKeys; // Assert that key is of type LinkKeys
                             return (
