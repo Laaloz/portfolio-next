@@ -49,10 +49,9 @@
   }
 
   .category {
-    background: rgba(255, 255, 255, 0.01);
+    background: #252525;
     border-radius: 8px;
     box-shadow: 0 4px 30px rgba(240, 238, 238, 0.03);
-    backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     line-height: normal;
     padding: 0.5rem 1rem;

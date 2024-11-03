@@ -4,6 +4,10 @@ nav {
     padding: 0 1.5rem;
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(5px);
+
+    .nav-items {
+      background: #252525;
+    }
   }
 }
 
