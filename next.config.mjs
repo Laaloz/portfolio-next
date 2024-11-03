@@ -9,6 +9,7 @@ const nextConfig = {
             "media4.giphy.com",
             "media5.giphy.com",
             "images.ctfassets.net",
+            "laaloceesay.com",
         ],
     },
 };
