@@ -1,10 +1,48 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a; /* Avaruuden musta */
+  --foreground: #ededed; /* Valkoinen teksti */
+  --base: #c7c7c7;
+  --light-metal-gray: #6e6e6e;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-roboto);
+  min-height: 100dvh;
+}
+
+h1, h2, h3, h4, h5, h6, span {
+  font-family: var(--font-orbitron);
+  letter-spacing: 1px;
+}
+
+button {
+  color: var(--foreground);
+}
+
+a {
+  color: var(--foreground);
+}
+
+.langs {
+  font-size: 0.875rem;
+}
+
+.form-container {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #ffffff22;
+  box-shadow: 0 7px 20px 5px #00000088;
+  backdrop-filter: blur(7px);
+  border-radius: 8px;
+  padding: 1.25rem;
+  max-width:  30rem;
+  line-height: normal;
+  z-index: -1;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -14,14 +52,48 @@
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.react-flow__attribution {
+  display: none;
+}
+
+.connectable {
+  visibility: hidden;
+}
+
+.skip-link {
+    clip: rect(0 0 0 0);
+    border: 0;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+    background: black;
+    box-shadow: 0 0 2px 2px hsla(0,0%,4%,.6);
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: underline;
+    letter-spacing: 0.5px;
+
+    &:focus, &:active {
+        clip: auto;
+        height: auto;
+        top: 1rem;
+        left: 1rem;
+        margin: 0;
+        overflow: visible;
+        padding: 0.5rem 0.75rem;
+        width: auto;
+        z-index: 100000;
+        color: white;
+    }
 }

@@ -1,0 +1,112 @@
+.card-project {
+  background:   rgba(255, 255, 255, 0.08);
+  border: 1px solid #ffffff22;
+  box-shadow: 0 7px 20px 5px #00000088;
+  backdrop-filter: blur(7px);
+  border-radius: 8px;
+  padding: 1.25rem;
+  line-height: normal;
+
+  ::before{
+    position: fixed;
+    content: "";
+    box-shadow: 0 0 100px 40px #ffffff08;
+    top: -10%;
+    left: -100%;
+    transform: rotate(-45deg);
+    height: 60rem;
+    transition: .7s all;
+  }
+
+  .image-wrapper {
+    border: 1px solid #ffffff22;
+    border-radius: 4px;
+    aspect-ratio: 16/9;
+    height: auto;
+    width: 100%;
+  }
+
+  svg:not(.chevron) {
+    position: absolute;
+    inset: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--light-metal-gray);
+  }
+
+  img {
+    aspect-ratio: 16/9;
+    border-radius: 4px;
+    object-fit: cover;
+    object-position: center top;
+    transition: .5s all;
+
+    @media screen and (min-width: 768px) {
+      filter: blur(15px) brightness(0.2);
+      opacity: 0.5;
+    }
+  }
+
+  .category {
+    background: rgba(255, 255, 255, 0.01);
+    border-radius: 8px;
+    box-shadow: 0 4px 30px rgba(240, 238, 238, 0.03);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    line-height: normal;
+    padding: 0.5rem 1rem;
+  }
+
+  &.has-link{
+    &:hover{
+      border: 1px solid #ffffff44;
+      box-shadow: 0 7px 50px 10px #000000aa;
+
+      ::before{
+        filter: brightness(.5);
+        top: -100%;
+        left: 200%;
+      }
+
+      img {
+          filter: blur(0) brightness(1);
+          opacity: 1;
+      }
+    }
+  }
+}
+
+.card-knowledge {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid #ffffff22;
+  box-shadow: 0 7px 20px 5px #00000088;
+  border-radius: 14px;
+  backdrop-filter: blur(7px);
+  padding: 1.25rem;
+  line-height: normal;
+
+  .image-wrapper {
+    border-radius: 4px;
+    aspect-ratio: 16/9;
+    height: auto;
+    width: 100%;
+  }
+
+  img {
+    aspect-ratio: 16/9;
+    border-radius: 4px;
+    object-fit: cover;
+    object-position: center top;
+    filter: brightness(0.9);
+    opacity: 0.9;
+    transition: .5s all;
+  }
+}
+
+.wide {
+  .card-knowledge {
+    display: flex;
+    flex-direction: row;
+  }
+}

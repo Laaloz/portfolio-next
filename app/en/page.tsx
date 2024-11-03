@@ -9,27 +9,27 @@ export const metadata: Metadata = {
 };
 
 const Main = () => {
-    // Hero area
-    const titleHeroTag = "Luotettavaa kehitystä";
-    const titleHeroTagMiddle = "alus";
-    const titleHeroTagEnd = "ta";
-    const titleHeroTagfinal = "loppuun";
+    // hero
+    const titleHeroTag = "From start to finish, ";
+    const titleHeroTagMiddle = "ship";
+    const titleHeroTagEnd = "ping reliable development solutions";
+    const titleHeroTagfinal = "";
     const descriptionHero =
-        "Olen <strong>Laalo Ceesay</strong>, web-ohjelmistokehittäjä Into-Digital Oy:ssä, jolla on kokemusta verkkosivujen, verkkokauppojen ja digitaalisten palveluiden kehittämisestä.";
-    const buttonHeroText = "Lue lisää";
+        "I am <strong>Laalo Ceesay</strong>, a web developer at Into-Digital Oy with experience in developing websites, online stores, and digital services.";
+    const buttonHeroText = "Read More";
 
     // Projects area
     const limit = 3;
     const className = "mt-40 md:mt-60";
     const showTitle = true;
-    const titleProject = "Projektit";
-    const btnText = "Kaikki projektit";
+    const titleProject = "Latest Projects";
+    const btnText = "Projects";
 
-    // contact area
-    const title = "Kiinnostuitko?";
+    // contact
+    const title = "Interested?";
     const description =
-        "Ota rohkeasti yhteyttä, jos sinulla on kysymyksiä projekteistani tai haluat keskustella mistä tahansa aiheesta. Kuulen mielelläni ajatuksiasi!";
-    const buttonText = "Ota yhteyttä";
+        "Feel free to reach out if you have any questions about my projects or if you want to discuss any topic. I would love to hear your thoughts!";
+    const buttonText = "Get in Touch";
 
     return (
         <div className="flex flex-col items-center justify-center gap-8">
