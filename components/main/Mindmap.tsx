@@ -193,8 +193,8 @@ const Mindmap: React.FC = () => {
             >
                 <Background />
 
-                {isMobile && <Controls showInteractive={false} />}
-                {isMobile && <MiniMap pannable />}
+                <Controls showInteractive={false} />
+                <MiniMap pannable />
             </ReactFlow>
 
             <div id="skip-mindmap" className="skip-link-id"></div>
