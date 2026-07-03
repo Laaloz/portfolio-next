@@ -1,78 +1,108 @@
-import { Document } from "@contentful/rich-text-types"; // Import Document type
+import type { Locale } from "@/content/copy";
 
-// Set your Contentful Space ID and Access Token
 const SPACE_ID = process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID;
 const ACCESS_TOKEN = process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN;
 
-// Function to fetch projects from Contentful using fetch API
-export async function fetchProjects(number: number, locale: string = "fi-FI") {
-    // Default to 'en-US'
-    // Construct URL with locale
-    const url = `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?access_token=${ACCESS_TOKEN}&content_type=project&locale=${locale}`;
+export type Project = {
+    id: string;
+    title: string;
+    description: string;
+    tag: string;
+    challenge: string;
+    role: string;
+    link: string;
+    image: { url: string; width: number; height: number } | null;
+};
+
+type RichTextNode = {
+    nodeType: string;
+    value?: string;
+    content?: RichTextNode[];
+};
+
+function richTextToPlain(node: RichTextNode | undefined): string {
+    if (!node) return "";
+    if (node.nodeType === "text") return node.value ?? "";
+    return (node.content ?? [])
+        .map(richTextToPlain)
+        .join("")
+        .trim();
+}
+
+type Asset = {
+    sys: { id: string };
+    fields: {
+        file: {
+            url: string;
+            details?: { image?: { width: number; height: number } };
+        };
+    };
+};
+
+type Entry = {
+    sys: { id: string };
+    fields: {
+        title?: string;
+        description?: RichTextNode;
+        tag?: string;
+        challenge?: string;
+        role?: string;
+        link?: string;
+        image?: { sys: { id: string } };
+    };
+};
+
+/**
+ * Fetch redesign project entries (the ones with a challenge field) in
+ * handoff order. Returns [] when Contentful env vars are missing so pages
+ * still render with placeholders.
+ */
+export async function fetchProjects(
+    limit: number,
+    locale: Locale = "fi"
+): Promise<Project[]> {
+    if (!SPACE_ID || !ACCESS_TOKEN) return [];
+
+    const cfLocale = locale === "en" ? "en-US" : "fi-FI";
+    const url =
+        `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries` +
+        `?access_token=${ACCESS_TOKEN}&content_type=project&locale=${cfLocale}` +
+        `&fields.challenge[exists]=true&order=sys.firstPublishedAt&limit=${limit}`;
 
     try {
-        const response = await fetch(url);
-
-        // Check if the response is OK
+        const response = await fetch(url, { next: { revalidate: 3600 } });
         if (!response.ok) {
-            throw new Error(`Error fetching data: ${response.statusText}`);
+            throw new Error(`Contentful responded ${response.status}`);
         }
-
-        // Convert response to JSON
         const data = await response.json();
 
-        // Define the type for project fields
-        type ProjectFields = {
-            title: string;
-            description: Document; // Keep as Document for rich text
-            tag: string;
-            category: string;
-            image?: {
-                sys: {
-                    id: string;
-                };
+        const assets = new Map<string, Asset>(
+            (data.includes?.Asset ?? []).map((a: Asset) => [a.sys.id, a])
+        );
+
+        return (data.items as Entry[]).map((item) => {
+            const asset = item.fields.image
+                ? assets.get(item.fields.image.sys.id)
+                : undefined;
+            return {
+                id: item.sys.id,
+                title: item.fields.title ?? "",
+                description: richTextToPlain(item.fields.description),
+                tag: item.fields.tag ?? "",
+                challenge: item.fields.challenge ?? "",
+                role: item.fields.role ?? "",
+                link: item.fields.link ?? "",
+                image: asset
+                    ? {
+                          url: `https:${asset.fields.file.url}`,
+                          width:
+                              asset.fields.file.details?.image?.width ?? 1200,
+                          height:
+                              asset.fields.file.details?.image?.height ?? 750,
+                      }
+                    : null,
             };
-            cardDuration?: number;
-            link: string;
-        };
-
-        const assetMap: { [id: string]: string } = {};
-
-        data.includes.Asset.forEach(
-            (asset: {
-                sys: { id: string };
-                fields: { file: { url: string } };
-            }) => {
-                assetMap[asset.sys.id] = `https:${asset.fields.file.url}`; // Prepend with 'https:'
-            }
-        );
-
-        // Map over the returned entries to structure the data
-        const projects = data.items.map(
-            (item: {
-                fields: ProjectFields;
-                sys: { id: string; publishedAt: string };
-            }) => ({
-                id: item.sys.id, // Get ID from sys
-                title: item.fields.title,
-                description: item.fields.description, // Keep it as Document
-                tag: item.fields.tag,
-                category: item.fields.category,
-                image: assetMap[item.fields.image?.sys.id || ""] || "", // Resolve image URL using assetMap
-                cardDuration: item.fields.cardDuration || 0.3, // Default duration, adjust as needed
-                publishedAt: item.sys.publishedAt, // Include publishedAt
-                link: item.fields.link,
-            })
-        );
-
-        // Sort projects by publishedAt in descending order and return the specified number
-        return projects
-            .sort(
-                (a: { publishedAt: string }, b: { publishedAt: string }) =>
-                    new Date(b.publishedAt).getTime() -
-                    new Date(a.publishedAt).getTime()
-            )
-            .slice(0, number); // Use the number parameter to slice the array
+        });
     } catch (error) {
         console.error("Error fetching projects from Contentful", error);
         return [];

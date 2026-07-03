@@ -1,53 +1,180 @@
-.footer {
-  position: relative;
-  z-index: 999;
+/* Dark CTA + footer block */
+.cta-footer {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 90px var(--gutter) 32px;
+    border-radius: 32px 32px 0 0;
 }
 
-.footer-content {
-  flex-wrap: wrap;
-  border-radius: 8px;
-  padding: 1.5rem;
-  backdrop-filter: blur(2px);
-  align-items: flex-end;
-  row-gap: 2rem;
+.cta-footer-inner {
+    max-width: 1312px;
+    margin: 0 auto;
 }
 
-.footer-items {
-  display: flex;
-  flex-direction: row;
-  row-gap: 1rem;
-  column-gap: 1.5rem;
-  background: rgba(255, 255, 255, 0.01);
-  border-radius: 8px;
-  box-shadow: 0 4px 30px rgba(240, 238, 238, 0.03);
-  backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 0.5rem 1rem;
-  line-height: normal;
-  height: fit-content;
+.cta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 60px;
+}
 
-  a {
-    color: var(--foreground);
-    display: inline-block;
-    font-size: 0.875rem;
-    background-image: linear-gradient(var(--foreground) 0 0);
-    background-position: 0 100%;
-    background-size: 0% 1px;
-    background-repeat: no-repeat;
-    transition: background-size 0.3s, background-position 0s 0.3s; /*change after the size immediately*/
+.cta-text {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
 
-    &:hover {
-        background-position: 100% 100%;
-        background-size: 100% 1px;
+.cta-heading {
+    font-stretch: 118%;
+    font-size: 92px;
+    line-height: 0.98;
+    letter-spacing: -3px;
+    text-transform: lowercase;
+}
+
+.cta-heading .lime {
+    color: var(--lime);
+}
+
+.cta-note {
+    font-family: var(--font-mono), monospace;
+    font-size: 13px;
+    color: var(--muted-dark);
+}
+
+.cta-button {
+    flex-shrink: 0;
+    font-size: 17px;
+    padding: 20px 40px;
+}
+
+/* Subpage variant: smaller heading, centered row */
+.cta-footer.sub {
+    padding-top: 70px;
+}
+
+.cta-footer.sub .cta-row {
+    align-items: center;
+}
+
+.cta-heading.small {
+    font-size: 60px;
+    line-height: 1;
+    letter-spacing: -2px;
+}
+
+.cta-heading.small a {
+    color: var(--lime);
+    text-decoration: none;
+}
+
+.cta-heading.small a:hover {
+    text-decoration: underline;
+}
+
+.cta-button.sub {
+    padding: 18px 36px;
+}
+
+.cta-footer.sub .footer-row {
+    margin-top: 60px;
+}
+
+.footer-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 90px;
+    padding-top: 26px;
+    border-top: 1px solid rgba(242, 240, 234, 0.15);
+    font-family: var(--font-mono), monospace;
+    font-size: 13px;
+    color: var(--muted-dark);
+}
+
+.footer-links {
+    display: flex;
+    gap: 28px;
+}
+
+.footer-links a {
+    color: var(--bg);
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: var(--lime);
+}
+
+@media (max-width: 768px) {
+    .cta-footer {
+        padding: 44px var(--gutter) 24px;
+        border-radius: 24px 24px 0 0;
     }
 
-    &.active {
-      background-size: 100% 1px;
-      background-repeat: no-repeat;
+    .cta-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
     }
-  }
 
-  svg {
-    color: var(--light-metal-gray);
-  }
+    .cta-heading {
+        font-size: 42px;
+        line-height: 1;
+        letter-spacing: -1.5px;
+    }
+
+    .cta-heading br {
+        display: none;
+    }
+
+    /* Flatten so the note can move below the button (design order:
+       heading -> button -> note) */
+    .cta-text {
+        display: contents;
+    }
+
+    .cta-button {
+        display: block;
+        text-align: center;
+        margin-top: 24px;
+        font-size: 16px;
+        padding: 16px 24px;
+        order: 1;
+    }
+
+    .cta-note {
+        margin-top: 14px;
+        text-align: center;
+        font-size: 11px;
+        order: 2;
+    }
+
+    .cta-footer.sub {
+        padding-top: 40px;
+    }
+
+    .cta-heading.small {
+        font-size: 34px;
+        line-height: 1.02;
+        letter-spacing: -1px;
+    }
+
+    .cta-button.sub {
+        margin-top: 22px;
+        padding: 16px 24px;
+    }
+
+    .footer-row {
+        margin-top: 40px;
+        padding-top: 18px;
+        font-size: 11px;
+    }
+
+    .cta-footer.sub .footer-row {
+        margin-top: 36px;
+    }
+
+    .footer-links {
+        gap: 18px;
+    }
 }
