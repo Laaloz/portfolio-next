@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { copy, localePath, type Locale } from "@/content/copy";
+import { copy, localePath, GITHUB_URL, LINKEDIN_URL, type Locale } from "@/content/copy";
 
 export default function Navbar({ locale }: { locale: Locale }) {
     const pathname = usePathname();
@@ -21,6 +21,25 @@ export default function Navbar({ locale }: { locale: Locale }) {
     ];
     const contactHref = localePath(locale, "/contact");
     const onContact = barePath === "/contact";
+
+    const menuLinks = [
+        { href: localePath(locale, "/"), label: t.home },
+        ...subLinks,
+    ];
+
+    // Fullscreen menu: lock body scroll and close with Escape
+    useEffect(() => {
+        if (!open) return;
+        document.body.style.overflow = "hidden";
+        const onKey = (e: KeyboardEvent) => {
+            if (e.key === "Escape") setOpen(false);
+        };
+        window.addEventListener("keydown", onKey);
+        return () => {
+            document.body.style.overflow = "";
+            window.removeEventListener("keydown", onKey);
+        };
+    }, [open]);
 
     return (
         <header className="site-nav">
@@ -115,18 +134,48 @@ export default function Navbar({ locale }: { locale: Locale }) {
 
             {open && (
                 <nav className="mobile-menu" aria-label={t.mobileNav}>
-                    {subLinks.map((l) => (
+                    <div className="mobile-menu-links">
+                        {menuLinks.map((l) =>
+                            barePath === l.href.replace(/^\/en/, "") ||
+                            pathname === l.href ||
+                            (l.href === localePath(locale, "/") &&
+                                barePath === "/") ? (
+                                <span key={l.href} className="menu-link current">
+                                    {l.label}
+                                </span>
+                            ) : (
+                                <Link
+                                    key={l.href}
+                                    href={l.href}
+                                    className="menu-link"
+                                    onClick={() => setOpen(false)}
+                                >
+                                    {l.label}
+                                </Link>
+                            )
+                        )}
+                    </div>
+                    <div className="mobile-menu-bottom">
                         <Link
-                            key={l.href}
-                            href={l.href}
+                            href={contactHref}
+                            className="btn btn-dark mobile-menu-cta"
                             onClick={() => setOpen(false)}
                         >
-                            {l.label}
+                            {t.contact}
                         </Link>
-                    ))}
-                    <Link href={contactHref} onClick={() => setOpen(false)}>
-                        {t.contact}
-                    </Link>
+                        <div className="mobile-menu-social">
+                            <a href={GITHUB_URL} target="_blank" rel="noreferrer">
+                                github
+                            </a>
+                            <a
+                                href={LINKEDIN_URL}
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                linkedin
+                            </a>
+                        </div>
+                    </div>
                 </nav>
             )}
         </header>

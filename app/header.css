@@ -127,20 +127,82 @@
         display: flex;
     }
 
+    /* Fullscreen overlay under the sticky header (header stays on top so
+       the close button remains visible) */
     .mobile-menu {
         display: flex;
         flex-direction: column;
-        gap: 4px;
-        padding: 8px var(--gutter) 20px;
+        position: fixed;
+        inset: 0;
+        z-index: 40;
         background: var(--bg);
+        padding: 108px var(--gutter) 32px;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        .mobile-menu {
+            animation: menuIn 0.2s ease both;
+        }
+
+        @keyframes menuIn {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    }
+
+    .mobile-menu-links {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .menu-link {
+        font-family: var(--font-archivo), sans-serif;
+        font-weight: 800;
+        font-stretch: 115%;
+        font-size: 34px;
+        letter-spacing: -1px;
+        text-transform: lowercase;
+        color: var(--ink);
+        text-decoration: none;
+        padding: 18px 0;
         border-bottom: 1px solid var(--border);
     }
 
-    .mobile-menu a {
-        font-size: 20px;
-        font-weight: 600;
-        color: var(--ink);
+    .menu-link.current {
+        color: var(--violet);
+    }
+
+    .mobile-menu-bottom {
+        margin-top: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .mobile-menu-cta {
+        display: block;
+        text-align: center;
+        font-size: 16px;
+        padding: 16px 24px;
+    }
+
+    .mobile-menu-social {
+        display: flex;
+        justify-content: center;
+        gap: 18px;
+        font-family: var(--font-mono), monospace;
+        font-size: 12px;
+    }
+
+    .mobile-menu-social a {
+        color: var(--muted);
         text-decoration: none;
-        padding: 12px 0;
+        padding: 8px 4px;
     }
 }
