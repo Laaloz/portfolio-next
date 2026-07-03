@@ -5,12 +5,12 @@ const isDev = process.env.NODE_ENV === "development";
    reCAPTCHA needs google.com/gstatic.com script + frame access. */
 const csp = [
     "default-src 'self'",
-    `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.google.com https://www.gstatic.com https://www.googletagmanager.com`,
+    `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.google.com https://www.gstatic.com https://www.googletagmanager.com https://consent.cookiebot.com https://consentcdn.cookiebot.com`,
     "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' data: https://images.ctfassets.net https://www.googletagmanager.com https://*.google-analytics.com",
+    "img-src 'self' data: https://images.ctfassets.net https://www.googletagmanager.com https://*.google-analytics.com https://consent.cookiebot.com",
     "font-src 'self'",
-    "connect-src 'self' https://www.google.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com",
-    "frame-src https://www.google.com https://www.googletagmanager.com",
+    "connect-src 'self' https://www.google.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://consent.cookiebot.com https://consentcdn.cookiebot.com",
+    "frame-src https://www.google.com https://www.googletagmanager.com https://consentcdn.cookiebot.com",
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'self'",
