@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { fontClassNames } from "../fonts";
 import Navbar from "@/components/Navbar";
+import { GtmScript, GtmNoScript } from "@/components/GoogleTagManager";
 import PersonJsonLd from "@/components/PersonJsonLd";
 import { copy, SITE_URL } from "@/content/copy";
 import "../globals.css";
@@ -24,12 +25,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     return (
         <html lang="fi">
             <body className={fontClassNames}>
+                <GtmNoScript />
                 <a href="#main" className="skip-link">
                     {copy.fi.nav.skipToContent}
                 </a>
                 <Navbar locale="fi" />
                 <main id="main">{children}</main>
                 <PersonJsonLd />
+                <GtmScript />
             </body>
         </html>
     );

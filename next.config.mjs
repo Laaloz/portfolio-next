@@ -5,12 +5,12 @@ const isDev = process.env.NODE_ENV === "development";
    reCAPTCHA needs google.com/gstatic.com script + frame access. */
 const csp = [
     "default-src 'self'",
-    `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.google.com https://www.gstatic.com`,
+    `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.google.com https://www.gstatic.com https://www.googletagmanager.com`,
     "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' data: https://images.ctfassets.net",
+    "img-src 'self' data: https://images.ctfassets.net https://www.googletagmanager.com https://*.google-analytics.com",
     "font-src 'self'",
-    "connect-src 'self' https://www.google.com",
-    "frame-src https://www.google.com",
+    "connect-src 'self' https://www.google.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com",
+    "frame-src https://www.google.com https://www.googletagmanager.com",
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'self'",
