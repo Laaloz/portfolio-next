@@ -186,6 +186,7 @@
 
 .project-card-media {
     width: 100%;
+    height: auto;
     aspect-ratio: 16 / 10;
     border-radius: var(--radius-media);
     object-fit: cover;
