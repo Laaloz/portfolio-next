@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { copy, localePath, type Locale } from "@/content/copy";
 import { fetchProjects } from "@/services/contentfulService";
+import { fetchLatestGithubActivity } from "@/services/githubService";
 import ProjectCard from "@/components/ProjectCard";
 import SkillsSection from "@/components/SkillsSection";
 import ExperienceSection from "@/components/ExperienceSection";
@@ -8,7 +9,10 @@ import { CtaFooterHome } from "@/components/CtaFooter";
 
 export default async function HomePage({ locale }: { locale: Locale }) {
     const t = copy[locale];
-    const projects = await fetchProjects(3, locale);
+    const [projects, github] = await Promise.all([
+        fetchProjects(3, locale),
+        fetchLatestGithubActivity(locale),
+    ]);
 
     return (
         <>
@@ -33,6 +37,26 @@ export default async function HomePage({ locale }: { locale: Locale }) {
                         <span className="name">{t.home.introRich.name}</span>
                         {t.home.introRich.after}
                     </p>
+                    {github && (
+                        <div className="gh-activity">
+                            <span className="meta-label">
+                                {t.home.ghLabel}
+                            </span>
+                            <a
+                                href={github.repoUrl}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="gh-pill"
+                            >
+                                <span className="gh-text">
+                                    {github.text} · {github.timeAgo}
+                                </span>
+                                <span className="gh-arrow" aria-hidden="true">
+                                    ↗
+                                </span>
+                            </a>
+                        </div>
+                    )}
                 </div>
                 <div className="bento-card bento-ai">
                     <span className="meta-label">{t.home.aiLabel}</span>

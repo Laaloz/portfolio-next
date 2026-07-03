@@ -35,6 +35,55 @@
     color: var(--lime);
 }
 
+/* Latest GitHub activity in the intro card (pill styled after the
+   design's original ask-AI input) */
+.gh-activity {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.gh-activity .meta-label {
+    color: var(--muted-dark);
+}
+
+.gh-pill {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background: rgba(242, 240, 234, 0.08);
+    border: 1px solid rgba(242, 240, 234, 0.2);
+    border-radius: 999px;
+    padding: 8px 8px 8px 24px;
+    color: var(--muted-dark);
+    text-decoration: none;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.gh-pill:hover {
+    border-color: var(--lime);
+    color: var(--bg);
+}
+
+.gh-text {
+    flex-grow: 1;
+    font-size: 16px;
+}
+
+.gh-arrow {
+    background: var(--lime);
+    color: var(--ink);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
 .bento-ai {
     background: var(--violet);
     color: #fff;
@@ -116,6 +165,18 @@
     .bento-intro p {
         font-size: 17px;
         line-height: 1.55;
+    }
+
+    .gh-pill {
+        padding: 6px 6px 6px 16px;
+    }
+
+    .gh-text {
+        font-size: 13px;
+    }
+
+    .gh-arrow {
+        font-size: 16px;
     }
 
     .bento-ai {
