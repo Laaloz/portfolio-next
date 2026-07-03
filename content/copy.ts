@@ -153,7 +153,6 @@ export const copy = {
                 },
             ],
             portraitAlt: "Laalo Ceesay",
-            portraitPlaceholder: "valokuva: Laalo",
             facts: [
                 { k: "Sijainti", v: "Jyväskylä" },
                 { k: "Työkielet", v: "suomi & englanti" },
@@ -177,7 +176,6 @@ export const copy = {
             openAria: (title: string) =>
                 `katso live: ${title} (avautuu uuteen välilehteen)`,
             screenshotAlt: (title: string) => `Kuvakaappaus: ${title}`,
-            screenshotPlaceholder: (title: string) => `kuvakaappaus: ${title}`,
             ownTitle: "omat projektit",
             ownAllGithub: "kaikki GitHubissa ↗",
             ownCode: "katso koodi",
@@ -377,7 +375,6 @@ export const copy = {
                 },
             ],
             portraitAlt: "Laalo Ceesay",
-            portraitPlaceholder: "photo: Laalo",
             facts: [
                 { k: "Location", v: "Jyväskylä, Finland" },
                 { k: "Working languages", v: "Finnish & English" },
@@ -401,7 +398,6 @@ export const copy = {
             openAria: (title: string) =>
                 `view live: ${title} (opens in a new tab)`,
             screenshotAlt: (title: string) => `Screenshot: ${title}`,
-            screenshotPlaceholder: (title: string) => `screenshot: ${title}`,
             ownTitle: "personal projects",
             ownAllGithub: "all on GitHub ↗",
             ownCode: "view code",

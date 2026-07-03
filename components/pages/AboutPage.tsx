@@ -54,7 +54,7 @@ export default function AboutPage({ locale }: { locale: Locale }) {
                     <CardPlaceholder
                         className="portrait"
                         name={t.portraitAlt}
-                        label={t.portraitPlaceholder}
+                        label={t.portraitAlt}
                     />
                     <div className="facts-card">
                         {t.facts.map((fact) => (

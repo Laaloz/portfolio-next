@@ -58,10 +58,7 @@ export default function ProjectCard({
                     priority={priority}
                 />
             ) : (
-                <CardPlaceholder
-                    name={project.title}
-                    label={t.screenshotPlaceholder(project.title)}
-                />
+                <CardPlaceholder name={project.title} label={project.title} />
             )}
             <div className="project-card-body">
                 <span className="project-card-meta">
