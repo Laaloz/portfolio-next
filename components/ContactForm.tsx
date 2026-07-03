@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { copy, type Locale } from "@/content/copy";
 
 const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
@@ -17,24 +17,42 @@ declare global {
     }
 }
 
+/* The reCAPTCHA script is ~200 kB of third-party JS, so it loads lazily on
+   the first form interaction instead of on page load (keeps Lighthouse
+   clean for visitors who never touch the form). */
 function useRecaptcha() {
-    useEffect(() => {
-        if (!RECAPTCHA_SITE_KEY || window.grecaptcha) return;
+    const load = useCallback(() => {
+        if (
+            !RECAPTCHA_SITE_KEY ||
+            window.grecaptcha ||
+            document.getElementById("recaptcha-script")
+        ) {
+            return;
+        }
         const script = document.createElement("script");
+        script.id = "recaptcha-script";
         script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`;
         script.async = true;
         document.head.appendChild(script);
     }, []);
 
-    return useCallback(async () => {
-        if (!RECAPTCHA_SITE_KEY || !window.grecaptcha) return "";
+    const getToken = useCallback(async () => {
+        if (!RECAPTCHA_SITE_KEY) return "";
+        load();
+        // Wait briefly for the script if the user submits immediately
+        for (let i = 0; i < 20 && !window.grecaptcha; i++) {
+            await new Promise((r) => setTimeout(r, 250));
+        }
+        if (!window.grecaptcha) return "";
         await new Promise<void>((resolve) =>
             window.grecaptcha!.ready(resolve)
         );
         return window.grecaptcha.execute(RECAPTCHA_SITE_KEY, {
             action: "submitForm",
         });
-    }, []);
+    }, [load]);
+
+    return { load, getToken };
 }
 
 type Status = "idle" | "sending" | "success" | "error";
@@ -43,7 +61,7 @@ export default function ContactForm({ locale }: { locale: Locale }) {
     const t = copy[locale].contact;
     const [status, setStatus] = useState<Status>("idle");
     const [validationError, setValidationError] = useState("");
-    const getRecaptchaToken = useRecaptcha();
+    const { load: loadRecaptcha, getToken: getRecaptchaToken } = useRecaptcha();
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -90,7 +108,12 @@ export default function ContactForm({ locale }: { locale: Locale }) {
     }
 
     return (
-        <form className="form-card" onSubmit={handleSubmit} noValidate>
+        <form
+            className="form-card"
+            onSubmit={handleSubmit}
+            onFocus={loadRecaptcha}
+            noValidate
+        >
             <div className="form-fields-row">
                 <label>
                     <span>{t.nameLabel}</span>

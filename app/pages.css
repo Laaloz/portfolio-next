@@ -166,8 +166,10 @@
 }
 
 .numbered-row .row-title {
+    font-family: var(--font-sans), sans-serif;
     font-size: 18px;
     font-weight: 600;
+    margin: 0;
 }
 
 .numbered-row p {

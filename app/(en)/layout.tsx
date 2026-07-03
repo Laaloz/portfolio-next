@@ -22,8 +22,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     return (
         <html lang="en">
             <body className={fontClassNames}>
+                <a href="#main" className="skip-link">
+                    {copy.en.nav.skipToContent}
+                </a>
                 <Navbar locale="en" />
-                <main>{children}</main>
+                <main id="main">{children}</main>
             </body>
         </html>
     );

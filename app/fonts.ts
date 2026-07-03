@@ -16,7 +16,7 @@ export const instrumentSans = Instrument_Sans({
 
 export const jetbrainsMono = JetBrains_Mono({
     subsets: ["latin"],
-    weight: ["400", "500", "700"],
+    weight: ["400", "700"],
     variable: "--font-mono",
     display: "swap",
 });

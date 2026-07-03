@@ -15,6 +15,7 @@
 }
 
 .wordmark {
+    display: inline-block;
     font-family: var(--font-archivo), sans-serif;
     font-weight: 800;
     font-stretch: 115%;
@@ -22,6 +23,9 @@
     letter-spacing: -0.3px;
     color: var(--ink);
     text-decoration: none;
+    /* enlarge the touch target without shifting the layout */
+    padding: 13px 0;
+    margin: -13px 0;
 }
 
 .nav-links {
@@ -64,6 +68,8 @@
 .lang-switch a,
 .lang-switch span.active {
     text-decoration: none;
+    /* keep the 44px touch-target without changing the visual layout */
+    padding: 12px 4px;
 }
 
 .lang-switch .active {

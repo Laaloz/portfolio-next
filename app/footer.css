@@ -65,11 +65,14 @@
 
 .cta-heading.small a {
     color: var(--lime);
-    text-decoration: none;
+    /* underline so the link is distinguishable without color alone (WCAG) */
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 8px;
 }
 
 .cta-heading.small a:hover {
-    text-decoration: underline;
+    text-decoration-thickness: 5px;
 }
 
 .cta-button.sub {

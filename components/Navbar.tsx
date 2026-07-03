@@ -35,7 +35,7 @@ export default function Navbar({ locale }: { locale: Locale }) {
                     laalo.dev
                 </Link>
 
-                <nav className="nav-links" aria-label={t.home}>
+                <nav className="nav-links" aria-label={t.mainNav}>
                     {isHome
                         ? anchors.map((a) => (
                               <a key={a.href} href={a.href} className="nav-pill">
@@ -130,7 +130,7 @@ export default function Navbar({ locale }: { locale: Locale }) {
             </div>
 
             {open && (
-                <nav className="mobile-menu" aria-label={t.home}>
+                <nav className="mobile-menu" aria-label={t.mobileNav}>
                     {subLinks.map((l) => (
                         <Link
                             key={l.href}

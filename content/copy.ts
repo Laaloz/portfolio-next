@@ -15,6 +15,9 @@ export const copy = {
             openMenu: "Avaa valikko",
             closeMenu: "Sulje valikko",
             home: "Etusivu",
+            mainNav: "Päävalikko",
+            mobileNav: "Mobiilivalikko",
+            skipToContent: "Siirry sisältöön",
         },
         home: {
             metaTitle: "Laalo Ceesay — web-kehittäjä",
@@ -170,8 +173,9 @@ export const copy = {
             heroTitle: "valitut työt",
             intro: "Asiakasprojektit on toteutettu Into-Digital Oy:ssä. Jokaisesta kerron haasteen ja ratkaisun, koska lopputulos on vain puolet tarinasta.",
             challengeLabel: "HAASTE → RATKAISU",
-            viewLive: "katso live ↗",
-            openAria: (title: string) => `Avaa ${title} uuteen välilehteen`,
+            viewLive: "katso live",
+            openAria: (title: string) =>
+                `katso live: ${title} (avautuu uuteen välilehteen)`,
             screenshotAlt: (title: string) => `Kuvakaappaus: ${title}`,
             screenshotPlaceholder: (title: string) => `kuvakaappaus: ${title}`,
             ownTitle: "omat projektit",
@@ -236,6 +240,9 @@ export const copy = {
             openMenu: "Open menu",
             closeMenu: "Close menu",
             home: "Home",
+            mainNav: "Main navigation",
+            mobileNav: "Mobile navigation",
+            skipToContent: "Skip to content",
         },
         home: {
             metaTitle: "Laalo Ceesay — web developer",
@@ -391,8 +398,9 @@ export const copy = {
             heroTitle: "selected work",
             intro: "Client projects were built at Into-Digital Oy. For each one I share the challenge and the solution, because the end result is only half the story.",
             challengeLabel: "CHALLENGE → SOLUTION",
-            viewLive: "view live ↗",
-            openAria: (title: string) => `Open ${title} in a new tab`,
+            viewLive: "view live",
+            openAria: (title: string) =>
+                `view live: ${title} (opens in a new tab)`,
             screenshotAlt: (title: string) => `Screenshot: ${title}`,
             screenshotPlaceholder: (title: string) => `screenshot: ${title}`,
             ownTitle: "personal projects",

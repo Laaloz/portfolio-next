@@ -26,20 +26,20 @@ export default function AboutPage({ locale }: { locale: Locale }) {
                         <p className="rest">{t.storyRest}</p>
                     </div>
                     <div className="dark-card">
-                        <span className="meta-label">{t.howLabel}</span>
+                        <h2 className="meta-label">{t.howLabel}</h2>
                         <div className="numbered-rows">
                             {t.principles.map((principle, i) => (
                                 <div
                                     key={principle.title}
                                     className="numbered-row"
                                 >
-                                    <span className="num">
+                                    <span className="num" aria-hidden="true">
                                         {String(i + 1).padStart(2, "0")}
                                     </span>
                                     <div>
-                                        <span className="row-title">
+                                        <h3 className="row-title">
                                             {principle.title}
-                                        </span>
+                                        </h3>
                                         <p>{principle.text}</p>
                                     </div>
                                 </div>

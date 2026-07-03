@@ -23,7 +23,7 @@ function FooterRow({ locale }: { locale: Locale }) {
 export function CtaFooterHome({ locale }: { locale: Locale }) {
     const t = copy[locale].home;
     return (
-        <div className="cta-footer">
+        <footer className="cta-footer">
             <div className="cta-footer-inner">
                 <div className="cta-row">
                     <div className="cta-text">
@@ -44,7 +44,7 @@ export function CtaFooterHome({ locale }: { locale: Locale }) {
                 </div>
                 <FooterRow locale={locale} />
             </div>
-        </div>
+        </footer>
     );
 }
 
@@ -59,7 +59,7 @@ export function CtaFooterSub({
     buttonLabel: string;
 }) {
     return (
-        <div className="cta-footer sub">
+        <footer className="cta-footer sub">
             <div className="cta-footer-inner">
                 <div className="cta-row">
                     <h2 className="cta-heading small">{heading}</h2>
@@ -72,17 +72,17 @@ export function CtaFooterSub({
                 </div>
                 <FooterRow locale={locale} />
             </div>
-        </div>
+        </footer>
     );
 }
 
 /* Contact page: footer row only */
 export function FooterOnly({ locale }: { locale: Locale }) {
     return (
-        <div className="cta-footer footer-only">
+        <footer className="cta-footer footer-only">
             <div className="cta-footer-inner">
                 <FooterRow locale={locale} />
             </div>
-        </div>
+        </footer>
     );
 }

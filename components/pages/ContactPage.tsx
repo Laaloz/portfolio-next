@@ -21,7 +21,7 @@ export default function ContactPage({ locale }: { locale: Locale }) {
                 <ContactForm locale={locale} />
                 <div className="contact-col">
                     <div className="dark-card">
-                        <span className="meta-label">{t.nextLabel}</span>
+                        <h2 className="meta-label">{t.nextLabel}</h2>
                         <div className="numbered-rows next-steps">
                             {t.nextSteps.map((step, i) => (
                                 <div key={i} className="numbered-row">

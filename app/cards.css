@@ -42,7 +42,8 @@
 
 .bento-ai .meta-label {
     color: #fff;
-    opacity: 0.7;
+    /* 0.9 keeps AA contrast (>=4.5:1) on the violet bg; design's 0.7 fails */
+    opacity: 0.9;
 }
 
 .bento-ai p {
@@ -207,7 +208,7 @@
     text-transform: uppercase;
 }
 
-.project-card h3 {
+.project-card-title {
     font-stretch: 112%;
     font-size: 24px;
     letter-spacing: -0.5px;
@@ -263,7 +264,7 @@
         padding: 0 6px 6px;
     }
 
-    .project-card h3 {
+    .project-card-title {
         font-size: 20px;
     }
 

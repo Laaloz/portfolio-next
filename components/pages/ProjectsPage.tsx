@@ -22,11 +22,13 @@ export default async function ProjectsPage({ locale }: { locale: Locale }) {
 
             <section className="container section">
                 <div className="project-grid">
-                    {projects.map((project) => (
+                    {projects.map((project, i) => (
                         <ProjectCard
                             key={project.id}
                             project={project}
                             locale={locale}
+                            priority={i === 0}
+                            headingLevel="h2"
                         />
                     ))}
                 </div>
