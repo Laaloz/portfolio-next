@@ -179,7 +179,7 @@
         box-shadow 0.25s ease;
 }
 
-.project-card:hover {
+.project-card.linked-card:hover {
     background: #f4f9d8;
     border-color: #c9e94a;
     box-shadow: 0 12px 28px -16px rgba(25, 24, 19, 0.2);

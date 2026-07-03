@@ -180,10 +180,9 @@ export const copy = {
             screenshotPlaceholder: (title: string) => `kuvakaappaus: ${title}`,
             ownTitle: "omat projektit",
             ownAllGithub: "kaikki GitHubissa ↗",
-            ownRepo: "Laaloz / portfolio-next",
-            ownDesc:
-                "Tämä sivusto: kaksikielinen Next.js-toteutus Contentful-sisällönhallinnalla. Koodi avoimesti luettavissa.",
-            ownCode: "katso koodi ↗",
+            ownCode: "katso koodi",
+            codeAria: (title: string) =>
+                `katso koodi: ${title} (avautuu uuteen välilehteen)`,
             nextLabel: "[ seuraava oma projekti ]",
             nextDesc:
                 "Paikka seuraavalle omalle projektille, jossa koodi on nähtävillä alusta loppuun.",
@@ -405,10 +404,9 @@ export const copy = {
             screenshotPlaceholder: (title: string) => `screenshot: ${title}`,
             ownTitle: "personal projects",
             ownAllGithub: "all on GitHub ↗",
-            ownRepo: "Laaloz / portfolio-next",
-            ownDesc:
-                "This site: a bilingual Next.js build with Contentful content management. The code is open to read.",
-            ownCode: "view code ↗",
+            ownCode: "view code",
+            codeAria: (title: string) =>
+                `view code: ${title} (opens in a new tab)`,
             nextLabel: "[ next personal project ]",
             nextDesc:
                 "A spot for the next personal project where the code is visible from start to finish.",

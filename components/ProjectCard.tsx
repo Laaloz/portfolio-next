@@ -2,6 +2,30 @@ import Image from "next/image";
 import { copy, type Locale } from "@/content/copy";
 import type { Project } from "@/services/contentfulService";
 
+export function CardPlaceholder({
+    name,
+    label,
+    className,
+}: {
+    name: string;
+    label: string;
+    className?: string;
+}) {
+    const initial = name.trim().charAt(0).toLowerCase() || "•";
+    return (
+        <div
+            className={`img-placeholder${className ? ` ${className}` : ""}`}
+            aria-hidden="true"
+        >
+            <span className="ph-initial">
+                {initial}
+                <span className="ph-period">.</span>
+            </span>
+            <span className="ph-label">{label}</span>
+        </div>
+    );
+}
+
 export default function ProjectCard({
     project,
     locale,
@@ -17,9 +41,12 @@ export default function ProjectCard({
 }) {
     const t = copy[locale].projects;
     const Heading = headingLevel;
+    const hasLink = Boolean(project.link);
 
     return (
-        <article className="project-card">
+        <article
+            className={`project-card${hasLink ? " linked-card" : ""}`}
+        >
             {project.image ? (
                 <Image
                     src={project.image.url}
@@ -31,9 +58,10 @@ export default function ProjectCard({
                     priority={priority}
                 />
             ) : (
-                <div className="img-placeholder">
-                    <span>{t.screenshotPlaceholder(project.title)}</span>
-                </div>
+                <CardPlaceholder
+                    name={project.title}
+                    label={t.screenshotPlaceholder(project.title)}
+                />
             )}
             <div className="project-card-body">
                 <span className="project-card-meta">
@@ -47,17 +75,20 @@ export default function ProjectCard({
                     <span className="meta-label">{t.challengeLabel}</span>
                     <p>{project.challenge}</p>
                 </div>
-                <div className="project-card-footer">
-                    <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="lime-link"
-                        aria-label={t.openAria(project.title)}
-                    >
-                        {t.viewLive} <span aria-hidden="true">↗</span>
-                    </a>
-                </div>
+                {hasLink && (
+                    <div className="project-card-footer">
+                        {/* stretch-link makes the whole card the click target */}
+                        <a
+                            href={project.link}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="lime-link stretch-link"
+                            aria-label={t.openAria(project.title)}
+                        >
+                            {t.viewLive} <span aria-hidden="true">↗</span>
+                        </a>
+                    </div>
+                )}
             </div>
         </article>
     );

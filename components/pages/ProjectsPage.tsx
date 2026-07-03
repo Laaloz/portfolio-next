@@ -5,7 +5,10 @@ import { CtaFooterSub } from "@/components/CtaFooter";
 
 export default async function ProjectsPage({ locale }: { locale: Locale }) {
     const t = copy[locale].projects;
-    const projects = await fetchProjects(12, locale);
+    const [projects, ownProjects] = await Promise.all([
+        fetchProjects(12, locale, "client"),
+        fetchProjects(6, locale, "own"),
+    ]);
 
     return (
         <>
@@ -47,18 +50,29 @@ export default async function ProjectsPage({ locale }: { locale: Locale }) {
                     </a>
                 </div>
                 <div className="own-projects-grid">
-                    <div className="own-project-card dark">
-                        <span className="repo">{t.ownRepo}</span>
-                        <p>{t.ownDesc}</p>
-                        <a
-                            href={`${GITHUB_URL}/portfolio-next`}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="lime-link"
+                    {ownProjects.map((project) => (
+                        <div
+                            key={project.id}
+                            className={`own-project-card dark${
+                                project.link ? " linked-card" : ""
+                            }`}
                         >
-                            {t.ownCode}
-                        </a>
-                    </div>
+                            <span className="repo">{project.title}</span>
+                            <p>{project.description}</p>
+                            {project.link && (
+                                <a
+                                    href={project.link}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="lime-link stretch-link"
+                                    aria-label={t.codeAria(project.title)}
+                                >
+                                    {t.ownCode}{" "}
+                                    <span aria-hidden="true">↗</span>
+                                </a>
+                            )}
+                        </div>
+                    ))}
                     <div className="own-project-card placeholder">
                         <span className="repo">{t.nextLabel}</span>
                         <p>{t.nextDesc}</p>

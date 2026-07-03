@@ -53,21 +53,26 @@ type Entry = {
 };
 
 /**
- * Fetch redesign project entries (the ones with a challenge field) in
- * handoff order. Returns [] when Contentful env vars are missing so pages
- * still render with placeholders.
+ * Client projects = entries with a challenge field; own projects = entries
+ * flagged ownProject. Both ordered by the sortOrder field in Contentful.
+ * Returns [] when Contentful env vars are missing so pages still render.
  */
 export async function fetchProjects(
     limit: number,
-    locale: Locale = "fi"
+    locale: Locale = "fi",
+    kind: "client" | "own" = "client"
 ): Promise<Project[]> {
     if (!SPACE_ID || !ACCESS_TOKEN) return [];
 
     const cfLocale = locale === "en" ? "en-US" : "fi-FI";
+    const filter =
+        kind === "own"
+            ? "&fields.ownProject=true"
+            : "&fields.challenge[exists]=true";
     const url =
         `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries` +
         `?access_token=${ACCESS_TOKEN}&content_type=project&locale=${cfLocale}` +
-        `&fields.challenge[exists]=true&order=sys.firstPublishedAt&limit=${limit}`;
+        `${filter}&order=fields.sortOrder&limit=${limit}`;
 
     try {
         const response = await fetch(url, { next: { revalidate: 3600 } });

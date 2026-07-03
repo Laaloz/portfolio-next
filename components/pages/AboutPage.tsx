@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { copy, localePath, GITHUB_URL, type Locale } from "@/content/copy";
 import { CtaFooterSub } from "@/components/CtaFooter";
+import { CardPlaceholder } from "@/components/ProjectCard";
 
 export default function AboutPage({ locale }: { locale: Locale }) {
     const t = copy[locale].about;
@@ -48,11 +49,13 @@ export default function AboutPage({ locale }: { locale: Locale }) {
                     </div>
                 </div>
                 <div className="about-col">
-                    {/* Portrait photo not delivered yet — striped placeholder
-                        per handoff until the owner drops in the real photo */}
-                    <div className="portrait img-placeholder">
-                        <span>{t.portraitPlaceholder}</span>
-                    </div>
+                    {/* Portrait photo not delivered yet — placeholder until
+                        the owner drops in the real photo */}
+                    <CardPlaceholder
+                        className="portrait"
+                        name={t.portraitAlt}
+                        label={t.portraitPlaceholder}
+                    />
                     <div className="facts-card">
                         {t.facts.map((fact) => (
                             <div key={fact.k} className="facts-row">
