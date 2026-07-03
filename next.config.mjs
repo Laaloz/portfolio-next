@@ -1,16 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: [
-            "media0.giphy.com",
-            "media1.giphy.com",
-            "media2.giphy.com",
-            "media3.giphy.com",
-            "media4.giphy.com",
-            "media5.giphy.com",
-            "images.ctfassets.net",
-            "www.laaloceesay.com",
-            "laaloceesay.com",
+        remotePatterns: [
+            { protocol: "https", hostname: "media0.giphy.com" },
+            { protocol: "https", hostname: "media1.giphy.com" },
+            { protocol: "https", hostname: "media2.giphy.com" },
+            { protocol: "https", hostname: "media3.giphy.com" },
+            { protocol: "https", hostname: "media4.giphy.com" },
+            { protocol: "https", hostname: "media5.giphy.com" },
+            { protocol: "https", hostname: "images.ctfassets.net" },
+            { protocol: "https", hostname: "www.laaloceesay.com" },
+            { protocol: "https", hostname: "laaloceesay.com" },
         ],
     },
 };

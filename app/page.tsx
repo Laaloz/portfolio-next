@@ -1,7 +1,6 @@
 import Contact from "@/components/main/Contact";
 import Hero from "@/components/main/Hero";
 import Projects from "@/components/main/Projects";
-import Mindmap from "@/components/main/Mindmap";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -49,7 +48,6 @@ const Main = () => {
                 title={titleProject}
                 btnText={btnText}
             />
-            <Mindmap />
             <Contact
                 title={title}
                 description={description}

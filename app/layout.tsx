@@ -2,7 +2,6 @@
 "use client";
 
 import { ReactNode } from "react";
-import StarsCanvas from "@/components/sub/Background";
 import Navbar from "@/components/main/Navbar";
 import Footer from "@/components/main/Footer";
 import localFont from "next/font/local";
@@ -46,7 +45,6 @@ export default function LangLayout({ children }: { children: ReactNode }) {
             <body
                 className={`${orbitron.variable} ${roboto.variable} antialiased flex flex-col`}
             >
-                <StarsCanvas />
                 <Navbar />
                 <main className="flex-1">{children}</main>
                 <Footer />

@@ -2,15 +2,9 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
-import {
-    WindowIcon,
-    ClockIcon,
-    Bars2Icon,
-    XMarkIcon,
-} from "@heroicons/react/24/solid";
+import { WindowIcon, Bars2Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import LanguageSwitcher from "./languageSwitcher"; // Ensure correct import case
 import { useLanguage } from "./languageContext";
-import Clock from "react-live-clock";
 
 // Define a type for the link keys
 type LinkKeys = "about" | "projects" | "contact";
@@ -20,7 +14,6 @@ const Navbar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const { language, setLanguage } = useLanguage();
-    const [isClient, setIsClient] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
 
     // Check if the current language is English based on pathname
@@ -46,8 +39,6 @@ const Navbar: React.FC = () => {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
-
-    useEffect(() => setIsClient(true), []);
 
     // Close menu if clicked outside
     useEffect(() => {
@@ -87,17 +78,6 @@ const Navbar: React.FC = () => {
                     </div>
 
                     <div className="nav-items hidden md:flex">
-                        <div className="clock flex items-center">
-                            <ClockIcon className="h-4 w-4" />
-                            {isClient && (
-                                <Clock
-                                    format={"H:mm:ss"}
-                                    style={{ fontSize: "0.875rem" }}
-                                    ticking
-                                />
-                            )}
-                        </div>
-
                         {Object.keys(links).map((key) => {
                             const typedKey = key as LinkKeys; // Assert that key is of type LinkKeys
                             return (
@@ -140,15 +120,6 @@ const Navbar: React.FC = () => {
 
             {isOpen && (
                 <div ref={menuRef} className="md:hidden nav-items-mobile">
-                    <div className="clock flex items-center gap-2 mb-3">
-                        <ClockIcon className="h-4 w-4" />
-                        <Clock
-                            format={"H:mm:ss"}
-                            style={{ fontSize: "1rem" }}
-                            ticking
-                        />
-                    </div>
-
                     <div className="flex flex-col gap-4 justify-end items-end">
                         {Object.keys(links).map((key) => {
                             const typedKey = key as LinkKeys; // Assert that key is of type LinkKeys
