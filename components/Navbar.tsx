@@ -12,18 +12,12 @@ export default function Navbar({ locale }: { locale: Locale }) {
 
     const barePath =
         locale === "en" ? pathname.replace(/^\/en/, "") || "/" : pathname;
-    const isHome = barePath === "/";
     const fiHref = barePath;
     const enHref = barePath === "/" ? "/en" : `/en${barePath}`;
 
     const subLinks = [
         { href: localePath(locale, "/about"), label: t.about },
         { href: localePath(locale, "/projects"), label: t.projects },
-    ];
-    const anchors = [
-        { href: "#projects", label: t.projects },
-        { href: "#skills", label: t.skills },
-        { href: "#experience", label: t.experience },
     ];
     const contactHref = localePath(locale, "/contact");
     const onContact = barePath === "/contact";
@@ -36,28 +30,18 @@ export default function Navbar({ locale }: { locale: Locale }) {
                 </Link>
 
                 <nav className="nav-links" aria-label={t.mainNav}>
-                    {isHome
-                        ? anchors.map((a) => (
-                              <a key={a.href} href={a.href} className="nav-pill">
-                                  {a.label}
-                              </a>
-                          ))
-                        : subLinks.map((l) =>
-                              barePath === l.href.replace(/^\/en/, "") ||
-                              pathname === l.href ? (
-                                  <span key={l.href} className="nav-pill current">
-                                      {l.label}
-                                  </span>
-                              ) : (
-                                  <Link
-                                      key={l.href}
-                                      href={l.href}
-                                      className="nav-pill"
-                                  >
-                                      {l.label}
-                                  </Link>
-                              )
-                          )}
+                    {subLinks.map((l) =>
+                        barePath === l.href.replace(/^\/en/, "") ||
+                        pathname === l.href ? (
+                            <span key={l.href} className="nav-pill current">
+                                {l.label}
+                            </span>
+                        ) : (
+                            <Link key={l.href} href={l.href} className="nav-pill">
+                                {l.label}
+                            </Link>
+                        )
+                    )}
 
                     <span className="lang-switch">
                         {locale === "fi" ? (
