@@ -85,6 +85,9 @@ h3 {
 
 /* Layout */
 .container {
+    /* width needed because flex-column main disables stretch when
+       margins are auto */
+    width: 100%;
     max-width: 1440px;
     margin: 0 auto;
     padding-left: var(--gutter);
