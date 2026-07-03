@@ -2,7 +2,8 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { fontClassNames } from "../fonts";
 import Navbar from "@/components/Navbar";
-import { copy } from "@/content/copy";
+import PersonJsonLd from "@/components/PersonJsonLd";
+import { copy, SITE_URL } from "@/content/copy";
 import "../globals.css";
 import "../header.css";
 import "../footer.css";
@@ -10,6 +11,7 @@ import "../cards.css";
 import "../pages.css";
 
 export const metadata: Metadata = {
+    metadataBase: new URL(SITE_URL),
     title: copy.fi.home.metaTitle,
     description: copy.fi.home.metaDescription,
 };
@@ -27,6 +29,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 </a>
                 <Navbar locale="fi" />
                 <main id="main">{children}</main>
+                <PersonJsonLd />
             </body>
         </html>
     );

@@ -455,6 +455,7 @@ export const copy = {
 export const EMAIL = "laaloceesay@gmail.com";
 export const GITHUB_URL = "https://github.com/Laaloz";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/laaloceesay/";
+export const SITE_URL = "https://laalo.dev";
 
 export function localePath(locale: Locale, path: string) {
     const clean = path.startsWith("/") ? path : `/${path}`;
