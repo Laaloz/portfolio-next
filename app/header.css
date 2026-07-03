@@ -12,6 +12,10 @@
     align-items: center;
     padding-top: 22px;
     padding-bottom: 22px;
+    /* stays above the fullscreen mobile menu (z-index 40) so the
+       wordmark and close button remain clickable */
+    position: relative;
+    z-index: 45;
 }
 
 .wordmark {
