@@ -225,7 +225,8 @@
     background: var(--surface-soft);
     border-radius: 12px;
     padding: 14px 16px;
-    flex-grow: 1;
+    /* natural height, pinned above the card footer */
+    margin-top: auto;
 }
 
 .challenge-box .meta-label {
