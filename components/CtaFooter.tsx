@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { copy, localePath, EMAIL, GITHUB_URL, LINKEDIN_URL, type Locale } from "@/content/copy";
+import ArrowUpRight from "@/components/icons/ArrowUpRight";
 
 function FooterRow({ locale }: { locale: Locale }) {
     const t = copy[locale].footer;
@@ -39,7 +40,7 @@ export function CtaFooterHome({ locale }: { locale: Locale }) {
                         href={`mailto:${EMAIL}`}
                         className="btn btn-violet cta-button"
                     >
-                        {EMAIL} ↗
+                        {EMAIL} <ArrowUpRight />
                     </a>
                 </div>
                 <FooterRow locale={locale} />

@@ -1,6 +1,7 @@
 import { copy, EMAIL, LINKEDIN_URL, type Locale } from "@/content/copy";
 import ContactForm from "@/components/ContactForm";
 import { FooterOnly } from "@/components/CtaFooter";
+import ArrowUpRight from "@/components/icons/ArrowUpRight";
 
 export default function ContactPage({ locale }: { locale: Locale }) {
     const t = copy[locale].contact;
@@ -46,7 +47,7 @@ export default function ContactPage({ locale }: { locale: Locale }) {
                                 rel="noreferrer"
                                 className="v"
                             >
-                                {t.infoLinkedinValue}
+                                {t.infoLinkedinValue} <ArrowUpRight />
                             </a>
                         </div>
                         <div className="facts-row">

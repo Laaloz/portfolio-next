@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { copy, type Locale } from "@/content/copy";
 import type { Project } from "@/services/contentfulService";
+import ArrowUpRight from "@/components/icons/ArrowUpRight";
 
 export function CardPlaceholder({
     name,
@@ -82,7 +83,7 @@ export default function ProjectCard({
                             className="lime-link stretch-link"
                             aria-label={t.openAria(project.title)}
                         >
-                            {t.viewLive} <span aria-hidden="true">↗</span>
+                            {t.viewLive} <ArrowUpRight />
                         </a>
                     </div>
                 )}

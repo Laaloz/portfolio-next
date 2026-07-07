@@ -6,6 +6,7 @@ import ProjectCard from "@/components/ProjectCard";
 import SkillsSection from "@/components/SkillsSection";
 import ExperienceSection from "@/components/ExperienceSection";
 import { CtaFooterHome } from "@/components/CtaFooter";
+import ArrowUpRight from "@/components/icons/ArrowUpRight";
 
 export default async function HomePage({ locale }: { locale: Locale }) {
     const t = copy[locale];
@@ -52,7 +53,7 @@ export default async function HomePage({ locale }: { locale: Locale }) {
                                     {github.text} · {github.timeAgo}
                                 </span>
                                 <span className="gh-arrow" aria-hidden="true">
-                                    ↗
+                                    <ArrowUpRight />
                                 </span>
                             </a>
                         </div>

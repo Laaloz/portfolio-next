@@ -124,7 +124,7 @@ export const copy = {
                 description:
                     "Omia projekteja ja web-kehityksen opiskelua toisen alan töiden ohessa. Tuoreimmat kokeilut GitHubissa.",
                 chip: null,
-                link: { label: "github ↗", href: "https://github.com/Laaloz" },
+                link: { label: "github", href: "https://github.com/Laaloz" },
             },
         ],
         about: {
@@ -160,7 +160,7 @@ export const copy = {
                 { k: "Kokemus", v: "~5 v asiakastyötä" },
             ],
             githubLabel: "GitHub",
-            githubValue: "@Laaloz ↗",
+            githubValue: "@Laaloz",
             ctaBefore: "katso, mitä olen ",
             ctaLink: "tehnyt",
             ctaButton: "Ota yhteyttä →",
@@ -178,7 +178,7 @@ export const copy = {
                 `katso live: ${title} (avautuu uuteen välilehteen)`,
             screenshotAlt: (title: string) => `Kuvakaappaus: ${title}`,
             ownTitle: "omat projektit",
-            ownAllGithub: "kaikki GitHubissa ↗",
+            ownAllGithub: "kaikki GitHubissa",
             ownCode: "katso koodi",
             codeAria: (title: string) =>
                 `katso koodi: ${title} (avautuu uuteen välilehteen)`,
@@ -219,7 +219,7 @@ export const copy = {
             ],
             infoEmail: "Sähköposti",
             infoLinkedin: "LinkedIn",
-            infoLinkedinValue: "laaloceesay ↗",
+            infoLinkedinValue: "laaloceesay",
             infoLocation: "Sijainti",
             infoLocationValue: "Jyväskylä, Suomi",
         },
@@ -347,7 +347,7 @@ export const copy = {
                 description:
                     "Personal projects and studying web development alongside work in another field. Latest experiments on GitHub.",
                 chip: null,
-                link: { label: "github ↗", href: "https://github.com/Laaloz" },
+                link: { label: "github", href: "https://github.com/Laaloz" },
             },
         ],
         about: {
@@ -383,7 +383,7 @@ export const copy = {
                 { k: "Experience", v: "~5 yrs client work" },
             ],
             githubLabel: "GitHub",
-            githubValue: "@Laaloz ↗",
+            githubValue: "@Laaloz",
             ctaBefore: "see what i've ",
             ctaLink: "built",
             ctaButton: "Get in touch →",
@@ -401,7 +401,7 @@ export const copy = {
                 `view live: ${title} (opens in a new tab)`,
             screenshotAlt: (title: string) => `Screenshot: ${title}`,
             ownTitle: "personal projects",
-            ownAllGithub: "all on GitHub ↗",
+            ownAllGithub: "all on GitHub",
             ownCode: "view code",
             codeAria: (title: string) =>
                 `view code: ${title} (opens in a new tab)`,
@@ -443,7 +443,7 @@ export const copy = {
             ],
             infoEmail: "Email",
             infoLinkedin: "LinkedIn",
-            infoLinkedinValue: "laaloceesay ↗",
+            infoLinkedinValue: "laaloceesay",
             infoLocation: "Location",
             infoLocationValue: "Jyväskylä, Finland",
         },

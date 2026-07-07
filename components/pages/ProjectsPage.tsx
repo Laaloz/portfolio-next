@@ -2,6 +2,7 @@ import { copy, GITHUB_URL, type Locale } from "@/content/copy";
 import { fetchProjects } from "@/services/contentfulService";
 import ProjectCard from "@/components/ProjectCard";
 import { CtaFooterSub } from "@/components/CtaFooter";
+import ArrowUpRight from "@/components/icons/ArrowUpRight";
 
 export default async function ProjectsPage({ locale }: { locale: Locale }) {
     const t = copy[locale].projects;
@@ -46,7 +47,7 @@ export default async function ProjectsPage({ locale }: { locale: Locale }) {
                         rel="noreferrer"
                         className="lime-link"
                     >
-                        {t.ownAllGithub}
+                        {t.ownAllGithub} <ArrowUpRight />
                     </a>
                 </div>
                 <div className="own-projects-grid">
@@ -67,8 +68,7 @@ export default async function ProjectsPage({ locale }: { locale: Locale }) {
                                     className="lime-link stretch-link"
                                     aria-label={t.codeAria(project.title)}
                                 >
-                                    {t.ownCode}{" "}
-                                    <span aria-hidden="true">↗</span>
+                                    {t.ownCode} <ArrowUpRight />
                                 </a>
                             )}
                         </div>

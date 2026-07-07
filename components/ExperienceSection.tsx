@@ -1,4 +1,5 @@
 import { copy, type Locale } from "@/content/copy";
+import ArrowUpRight from "@/components/icons/ArrowUpRight";
 
 export default function ExperienceSection({ locale }: { locale: Locale }) {
     const t = copy[locale];
@@ -28,7 +29,7 @@ export default function ExperienceSection({ locale }: { locale: Locale }) {
                                 rel="noreferrer"
                                 className="lime-link"
                             >
-                                {row.link.label}
+                                {row.link.label} <ArrowUpRight />
                             </a>
                         )}
                     </div>

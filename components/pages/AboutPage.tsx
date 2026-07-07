@@ -2,6 +2,7 @@ import Link from "next/link";
 import { copy, localePath, GITHUB_URL, type Locale } from "@/content/copy";
 import { CtaFooterSub } from "@/components/CtaFooter";
 import { CardPlaceholder } from "@/components/ProjectCard";
+import ArrowUpRight from "@/components/icons/ArrowUpRight";
 
 export default function AboutPage({ locale }: { locale: Locale }) {
     const t = copy[locale].about;
@@ -71,7 +72,7 @@ export default function AboutPage({ locale }: { locale: Locale }) {
                                 rel="noreferrer"
                                 className="v"
                             >
-                                {t.githubValue}
+                                {t.githubValue} <ArrowUpRight />
                             </a>
                         </div>
                     </div>
