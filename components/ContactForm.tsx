@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { copy, type Locale } from "@/content/copy";
 
 const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
@@ -62,6 +62,13 @@ export default function ContactForm({ locale }: { locale: Locale }) {
     const [status, setStatus] = useState<Status>("idle");
     const [validationError, setValidationError] = useState("");
     const { load: loadRecaptcha, getToken: getRecaptchaToken } = useRecaptcha();
+
+    // Reveal the reCAPTCHA badge only while this page is mounted; the badge
+    // otherwise lingers on other routes after client-side navigation.
+    useEffect(() => {
+        document.body.classList.add("recaptcha-visible");
+        return () => document.body.classList.remove("recaptcha-visible");
+    }, []);
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();

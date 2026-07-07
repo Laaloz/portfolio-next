@@ -533,6 +533,17 @@
     color: var(--muted);
 }
 
+/* reCAPTCHA v3 injects a fixed badge into <body> that persists across
+   client-side navigation once loaded. Hide it everywhere and only reveal
+   it on the contact page (ContactForm toggles the body class on mount). */
+.grecaptcha-badge {
+    visibility: hidden;
+}
+
+body.recaptcha-visible .grecaptcha-badge {
+    visibility: visible;
+}
+
 .form-submit {
     font-size: 16px;
     padding: 15px 34px;
