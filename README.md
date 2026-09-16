@@ -13,7 +13,7 @@ A bilingual (FI/EN) portfolio with project write-ups in a challenge → solution
 - **Next.js 16** (App Router) with **React 19** and **TypeScript**
 - Hand-written CSS with design tokens; no UI framework
 - **Nodemailer** for the contact form (server-side, no third-party form service)
-- Deployed on <!-- TODO: Netlify / Vercel / Cloudcity -->
+- Deployed on Vercel
 
 ## Quality targets
 
