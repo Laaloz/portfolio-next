@@ -34,6 +34,13 @@ const securityHeaders = [
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    experimental: {
+        /* Inline the single ~6 KiB (gzipped) stylesheet into the HTML. The
+           separate CSS request used to race the async script chunks: when
+           the scripts arrived first they executed (hydration) before the
+           first frame, delaying first paint by ~0.3-1 s. */
+        inlineCss: true,
+    },
     images: {
         formats: ["image/avif", "image/webp"],
         remotePatterns: [
