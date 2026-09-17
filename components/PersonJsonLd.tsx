@@ -4,7 +4,7 @@ const person = {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Laalo Ceesay",
-    jobTitle: "Web Developer",
+    jobTitle: "Developer",
     worksFor: {
         "@type": "Organization",
         name: "Into-Digital Oy",

@@ -20,17 +20,17 @@ export const copy = {
             skipToContent: "Siirry sisältöön",
         },
         home: {
-            metaTitle: "Laalo Ceesay — web-kehittäjä",
+            metaTitle: "Laalo Ceesay — kehittäjä",
             metaDescription:
-                "Verkkopalveluita, jotka kestävät käyttöä ja aikaa. Laalo Ceesay, web-kehittäjä Into-Digital Oy:ssä, Jyväskylä.",
-            heroMeta: "web-kehittäjä ✦ into-digital oy ✦ jyväskylä",
+                "Verkkopalveluita, jotka kestävät käyttöä ja aikaa. Laalo Ceesay, kehittäjä Into-Digital Oy:ssä, Jyväskylä.",
+            heroMeta: "kehittäjä ✦ into-digital oy ✦ jyväskylä",
             heroLine1: "verkkopalveluita,",
             heroLine2: "jotka kestävät",
             heroLine3: "käyttöä ja aikaa",
             introRich: {
                 before: "Olen ",
                 name: "Laalo Ceesay",
-                after: ", web-kehittäjä Into-Digital Oy:ssä. Toteutan verkkosivut, verkkokaupat ja digitaaliset palvelut selaimesta palvelimeen.",
+                after: ", kehittäjä Into-Digital Oy:ssä. Toteutan verkkosivut, verkkokaupat ja digitaaliset palvelut selaimesta palvelimeen.",
             },
             ghLabel: "VIIMEKSI GITHUBISSA",
             aiLabel: "TEKOÄLY TYÖSSÄNI",
@@ -112,7 +112,7 @@ export const copy = {
         experience: [
             {
                 period: "2021 → NYT",
-                title: "Web-kehittäjä — Into-Digital Oy",
+                title: "Kehittäjä — Into-Digital Oy",
                 description:
                     "Lähes viisi vuotta asiakasprojekteja WordPress-ympäristöissä: verkkosivut, verkkokaupat ja digitaaliset palvelut käyttöliittymästä palvelimeen.",
                 chip: "TÄYSIPÄIVÄINEN",
@@ -243,17 +243,17 @@ export const copy = {
             skipToContent: "Skip to content",
         },
         home: {
-            metaTitle: "Laalo Ceesay — web developer",
+            metaTitle: "Laalo Ceesay — developer",
             metaDescription:
-                "Web services built to last. Laalo Ceesay, web developer at Into-Digital Oy, Jyväskylä, Finland.",
-            heroMeta: "web developer ✦ into-digital oy ✦ jyväskylä",
+                "Web services built to last. Laalo Ceesay, developer at Into-Digital Oy, Jyväskylä, Finland.",
+            heroMeta: "developer ✦ into-digital oy ✦ jyväskylä",
             heroLine1: "web services",
             heroLine2: "that withstand",
             heroLine3: "use and time",
             introRich: {
                 before: "I'm ",
                 name: "Laalo Ceesay",
-                after: ", a web developer at Into-Digital Oy. I build websites, online stores and digital services from browser to server.",
+                after: ", a developer at Into-Digital Oy. I build websites, online stores and digital services from browser to server.",
             },
             ghLabel: "LATEST ON GITHUB",
             aiLabel: "AI IN MY WORK",
@@ -335,7 +335,7 @@ export const copy = {
         experience: [
             {
                 period: "2021 → NOW",
-                title: "Web Developer — Into-Digital Oy",
+                title: "Developer — Into-Digital Oy",
                 description:
                     "Nearly five years of client projects in WordPress environments: websites, online stores and digital services from UI to server.",
                 chip: "FULL-TIME",
