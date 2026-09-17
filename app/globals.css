@@ -20,6 +20,14 @@
     --radius-media: 12px;
 }
 
+/* Tablet tier: desktop layout with tighter spacing */
+@media (max-width: 1099px) {
+    :root {
+        --gutter: 40px;
+        --section-pad: 64px;
+    }
+}
+
 @media (max-width: 768px) {
     :root {
         --gutter: 20px;
@@ -143,16 +151,16 @@ h3 {
 }
 
 .section-title {
-    font-size: 54px;
+    font-size: clamp(34px, 3.75vw, 54px);
     font-stretch: 115%;
-    letter-spacing: -2px;
+    letter-spacing: -0.037em;
     text-transform: lowercase;
 }
 
 @media (max-width: 768px) {
     .section-title {
-        font-size: 30px;
-        letter-spacing: -1px;
+        font-size: clamp(28px, 7.5vw, 34px);
+        letter-spacing: -0.034em;
     }
 }
 

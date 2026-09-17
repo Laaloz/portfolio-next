@@ -1,7 +1,7 @@
 /* Bento grid (home) */
 .bento {
     display: grid;
-    grid-template-columns: 1.6fr 1fr 1fr;
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1fr);
     grid-template-rows: auto auto;
     gap: 20px;
     padding-top: 50px;
@@ -110,8 +110,8 @@
     font-family: var(--font-archivo), sans-serif;
     font-weight: 800;
     font-stretch: 115%;
-    font-size: 56px;
-    letter-spacing: -2px;
+    font-size: clamp(40px, 3.9vw, 56px);
+    letter-spacing: -0.036em;
     display: block;
 }
 
@@ -144,10 +144,28 @@
     font-weight: 600;
 }
 
+/* Tablet: the 3-column bento needs ~1100px of width; below that use the
+   two-column stack (intro / ai / stat+stat / stack) */
+@media (max-width: 1099px) {
+    .bento {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        grid-template-rows: none;
+        padding-top: 24px;
+    }
+
+    .bento-intro {
+        grid-row: auto;
+        grid-column: span 2;
+    }
+
+    .bento-ai,
+    .bento-stack {
+        grid-column: span 2;
+    }
+}
+
 @media (max-width: 768px) {
     .bento {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: none;
         gap: 14px;
         padding-top: 0;
     }
@@ -155,11 +173,6 @@
     .bento-card {
         padding: 26px 22px;
         gap: 22px;
-    }
-
-    .bento-intro {
-        grid-row: auto;
-        grid-column: span 2;
     }
 
     .bento-intro p {
@@ -177,10 +190,6 @@
 
     .gh-arrow {
         font-size: 16px;
-    }
-
-    .bento-ai {
-        grid-column: span 2;
     }
 
     .bento-ai p {
@@ -211,7 +220,6 @@
     }
 
     .bento-stack {
-        grid-column: span 2;
         padding: 22px;
         gap: 10px;
     }
@@ -221,10 +229,17 @@
     }
 }
 
+/* Very narrow phones: the two stat tiles no longer fit side by side */
+@media (max-width: 359px) {
+    .bento-stat {
+        grid-column: span 2;
+    }
+}
+
 /* Project cards */
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px;
 }
 
@@ -308,6 +323,12 @@
 
 .project-card-footer .lime-link {
     font-size: 14px;
+}
+
+@media (max-width: 1099px) {
+    .project-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
 @media (max-width: 768px) {
