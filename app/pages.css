@@ -10,6 +10,8 @@
 }
 
 .hero h1 {
+    /* last-resort fallback before the global word-break kicks in */
+    hyphens: auto;
     font-stretch: 118%;
     /* Fluid: 118px at >=1440, scales down through tablet widths */
     font-size: clamp(60px, 8.2vw, 118px);
@@ -41,7 +43,9 @@
     }
 
     .hero h1 {
-        font-size: clamp(32px, 9.6vw, 62px);
+        /* Sized so the longest Finnish word ("verkkopalveluita,", ~9.5em)
+           still fits on one line down to 320px */
+        font-size: clamp(28px, 10.3vw - 4.5px, 62px);
         line-height: 1.05;
         letter-spacing: -0.032em;
     }
@@ -67,6 +71,7 @@
 }
 
 .page-hero h1 {
+    hyphens: auto;
     font-stretch: 118%;
     font-size: clamp(52px, 6.7vw, 96px);
     line-height: 1;
@@ -98,7 +103,8 @@
     }
 
     .page-hero h1 {
-        font-size: clamp(36px, 11vw, 52px);
+        /* "harrastuksesta" (~8.4em) must fit on one line down to 320px */
+        font-size: clamp(30px, 11.5vw - 4.75px, 52px);
         line-height: 1.02;
         letter-spacing: -0.034em;
         margin-top: 14px;
