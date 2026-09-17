@@ -15,6 +15,7 @@ function FooterRow({ locale }: { locale: Locale }) {
                 <a href={LINKEDIN_URL} target="_blank" rel="noreferrer">
                     linkedin
                 </a>
+                <Link href={localePath(locale, "/privacy")}>{t.privacy}</Link>
             </div>
         </div>
     );

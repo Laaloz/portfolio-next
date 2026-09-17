@@ -2,17 +2,16 @@ const isDev = process.env.NODE_ENV === "development";
 
 /* CSP: 'unsafe-inline' for scripts is required by Next's inline bootstrap
    without nonce-based rendering (which would force every page dynamic).
-   reCAPTCHA needs google.com/gstatic.com script + frame access.
    Vercel Web Analytics is same-origin (/_vercel/insights/*) in production;
    in development it loads a debug script from va.vercel-scripts.com. */
 const csp = [
     "default-src 'self'",
-    `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval' https://va.vercel-scripts.com" : ""} https://www.google.com https://www.gstatic.com`,
+    `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval' https://va.vercel-scripts.com" : ""}`,
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: https://images.ctfassets.net",
     "font-src 'self'",
-    "connect-src 'self' https://www.google.com",
-    "frame-src https://www.google.com",
+    "connect-src 'self'",
+    "frame-src 'none'",
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'self'",

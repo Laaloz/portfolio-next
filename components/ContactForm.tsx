@@ -1,73 +1,22 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
-import { copy, type Locale } from "@/content/copy";
-
-const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
-
-declare global {
-    interface Window {
-        grecaptcha?: {
-            ready: (cb: () => void) => void;
-            execute: (
-                siteKey: string,
-                options: { action: string }
-            ) => Promise<string>;
-        };
-    }
-}
-
-/* The reCAPTCHA script is ~200 kB of third-party JS, so it loads lazily on
-   the first form interaction instead of on page load (keeps Lighthouse
-   clean for visitors who never touch the form). */
-function useRecaptcha() {
-    const load = useCallback(() => {
-        if (
-            !RECAPTCHA_SITE_KEY ||
-            window.grecaptcha ||
-            document.getElementById("recaptcha-script")
-        ) {
-            return;
-        }
-        const script = document.createElement("script");
-        script.id = "recaptcha-script";
-        script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`;
-        script.async = true;
-        document.head.appendChild(script);
-    }, []);
-
-    const getToken = useCallback(async () => {
-        if (!RECAPTCHA_SITE_KEY) return "";
-        load();
-        // Wait briefly for the script if the user submits immediately
-        for (let i = 0; i < 20 && !window.grecaptcha; i++) {
-            await new Promise((r) => setTimeout(r, 250));
-        }
-        if (!window.grecaptcha) return "";
-        await new Promise<void>((resolve) =>
-            window.grecaptcha!.ready(resolve)
-        );
-        return window.grecaptcha.execute(RECAPTCHA_SITE_KEY, {
-            action: "submitForm",
-        });
-    }, [load]);
-
-    return { load, getToken };
-}
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import { copy, localePath, type Locale } from "@/content/copy";
 
 type Status = "idle" | "sending" | "success" | "error";
 
+/* Spam protection without third parties or cookies: a honeypot field that
+   humans never see, the time the form has been open (bots submit within
+   milliseconds) and a per-IP rate limit on the server. */
 export default function ContactForm({ locale }: { locale: Locale }) {
     const t = copy[locale].contact;
     const [status, setStatus] = useState<Status>("idle");
     const [validationError, setValidationError] = useState("");
-    const { load: loadRecaptcha, getToken: getRecaptchaToken } = useRecaptcha();
+    const openedAt = useRef(0);
 
-    // Reveal the reCAPTCHA badge only while this page is mounted; the badge
-    // otherwise lingers on other routes after client-side navigation.
     useEffect(() => {
-        document.body.classList.add("recaptcha-visible");
-        return () => document.body.classList.remove("recaptcha-visible");
+        openedAt.current = Date.now();
     }, []);
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -77,6 +26,7 @@ export default function ContactForm({ locale }: { locale: Locale }) {
         const name = String(data.get("name") ?? "").trim();
         const email = String(data.get("email") ?? "").trim();
         const message = String(data.get("message") ?? "").trim();
+        const website = String(data.get("website") ?? "");
 
         if (!name || !email || !message) {
             setValidationError(t.requiredError);
@@ -90,11 +40,16 @@ export default function ContactForm({ locale }: { locale: Locale }) {
         setValidationError("");
         setStatus("sending");
         try {
-            const recaptchaToken = await getRecaptchaToken();
             const response = await fetch("/api/sendEmail", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name, email, message, recaptchaToken }),
+                body: JSON.stringify({
+                    name,
+                    email,
+                    message,
+                    website,
+                    elapsedMs: Date.now() - openedAt.current,
+                }),
             });
             if (!response.ok) throw new Error(`Send failed: ${response.status}`);
             setStatus("success");
@@ -115,12 +70,7 @@ export default function ContactForm({ locale }: { locale: Locale }) {
     }
 
     return (
-        <form
-            className="form-card"
-            onSubmit={handleSubmit}
-            onFocus={loadRecaptcha}
-            noValidate
-        >
+        <form className="form-card" onSubmit={handleSubmit} noValidate>
             <div className="form-fields-row">
                 <label>
                     <span>{t.nameLabel}</span>
@@ -129,6 +79,7 @@ export default function ContactForm({ locale }: { locale: Locale }) {
                         name="name"
                         placeholder={t.namePlaceholder}
                         autoComplete="name"
+                        maxLength={200}
                         required
                     />
                 </label>
@@ -139,6 +90,7 @@ export default function ContactForm({ locale }: { locale: Locale }) {
                         name="email"
                         placeholder={t.emailPlaceholder}
                         autoComplete="email"
+                        maxLength={254}
                         required
                     />
                 </label>
@@ -149,9 +101,22 @@ export default function ContactForm({ locale }: { locale: Locale }) {
                     name="message"
                     rows={6}
                     placeholder={t.messagePlaceholder}
+                    maxLength={5000}
                     required
                 />
             </label>
+            {/* Honeypot: hidden from people and assistive tech, filled by bots */}
+            <div className="hp-field" aria-hidden="true">
+                <label>
+                    website
+                    <input
+                        type="text"
+                        name="website"
+                        tabIndex={-1}
+                        autoComplete="off"
+                    />
+                </label>
+            </div>
             {validationError && (
                 <p className="form-error" role="alert">
                     {validationError}
@@ -163,7 +128,12 @@ export default function ContactForm({ locale }: { locale: Locale }) {
                 </p>
             )}
             <div className="form-footer">
-                <span className="privacy-note">{t.privacyNote}</span>
+                <span className="privacy-note">
+                    {t.privacyNote}{" "}
+                    <Link href={localePath(locale, "/privacy")}>
+                        {t.privacyLinkLabel}
+                    </Link>
+                </span>
                 <button
                     type="submit"
                     className="btn btn-violet form-submit"

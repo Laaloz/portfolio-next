@@ -540,15 +540,63 @@
     color: var(--muted);
 }
 
-/* reCAPTCHA v3 injects a fixed badge into <body> that persists across
-   client-side navigation once loaded. Hide it everywhere and only reveal
-   it on the contact page (ContactForm toggles the body class on mount). */
-.grecaptcha-badge {
-    visibility: hidden;
+.privacy-note a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
 }
 
-body.recaptcha-visible .grecaptcha-badge {
-    visibility: visible;
+/* Honeypot: off-screen (not display:none, which some bots detect) */
+.hp-field {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* Privacy page: plain prose in a card */
+.prose-card {
+    background: var(--surface);
+    border-radius: var(--radius-card);
+    padding: 44px;
+    max-width: 760px;
+}
+
+.prose-card section + section {
+    margin-top: 32px;
+}
+
+.prose-card h2 {
+    font-family: var(--font-sans), sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 8px;
+}
+
+.prose-card p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--body);
+    margin: 0;
+}
+
+.prose-card p + p {
+    margin-top: 12px;
+}
+
+@media (max-width: 768px) {
+    .prose-card {
+        padding: 24px 22px;
+    }
+
+    .prose-card section + section {
+        margin-top: 24px;
+    }
+
+    .prose-card p {
+        font-size: 15px;
+    }
 }
 
 .form-submit {

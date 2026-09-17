@@ -203,6 +203,7 @@ export const copy = {
             messageLabel: "Viesti",
             messagePlaceholder: "Kerro lyhyesti, mistä on kyse.",
             privacyNote: "Tietojasi ei käytetä muuhun kuin viestiisi vastaamiseen.",
+            privacyLinkLabel: "Tietosuoja",
             submit: "Lähetä viesti →",
             sending: "Lähetetään…",
             successTitle: "kiitos viestistä!",
@@ -226,6 +227,57 @@ export const copy = {
         footer: {
             copyright: "© 2026 laalo.dev — jyväskylä, fi",
             copyrightShort: "© 2026 laalo.dev",
+            privacy: "tietosuoja",
+        },
+        /* Draft privacy notice (2026-09-18) — owner to review before relying on it */
+        privacy: {
+            metaTitle: "Tietosuoja — Laalo Ceesay",
+            metaDescription:
+                "Mitä tietoja laalo.dev käsittelee ja miksi: yhteydenottolomake, evästeetön kävijätilastointi, ei evästeitä.",
+            heroMeta: "tietosuoja ✦ päivitetty 18.9.2026",
+            heroTitle: "tietosuoja",
+            intro: "Tämä sivusto on Laalo Ceesayn henkilökohtainen portfolio. Käsittelen tietoja mahdollisimman vähän: sivusto ei aseta evästeitä, eikä kävijöitä seurata yksilöivästi.",
+            sections: [
+                {
+                    title: "Rekisterinpitäjä",
+                    paragraphs: [
+                        "Laalo Ceesay, Jyväskylä. Yhteydenotot tietosuoja-asioissa: laaloceesay@gmail.com.",
+                    ],
+                },
+                {
+                    title: "Yhteydenottolomake",
+                    paragraphs: [
+                        "Kun lähetät viestin lomakkeella, käsittelen antamasi nimen, sähköpostiosoitteen ja viestin sisällön. Tiedot toimitetaan sähköpostiini Googlen Gmail-palvelun kautta, ja säilytän ne sähköpostissani niin kauan kuin yhteydenpito sitä edellyttää.",
+                        "Käsittelyn perusteena on oikeutettu etu: yhteydenottoosi vastaaminen. Tietoja ei käytetä markkinointiin eikä luovuteta eteenpäin.",
+                        "Roskapostin torjuntaan käytetään lomakkeen piilokenttää, lähetysajan tarkistusta ja lähetysten määrän rajoitusta. Näihin ei liity kolmansia osapuolia eikä evästeitä.",
+                    ],
+                },
+                {
+                    title: "Kävijätilastot",
+                    paragraphs: [
+                        "Sivuston kävijämääriä mitataan Vercel Web Analytics -palvelulla. Se ei aseta evästeitä eikä tallenna mitään laitteellesi. Kävijä erotellaan palvelinpuolella pyynnöstä lasketulla tiivisteellä, joka poistetaan 24 tunnin kuluttua, joten yksittäistä henkilöä ei voi tunnistaa.",
+                        "Tilastoihin tallentuu sivun osoite, viittaava sivusto, maa ja kaupunki, selain, käyttöjärjestelmä ja laitetyyppi. IP-osoitetta ei tallenneta. Käsittelyn perusteena on oikeutettu etu: sivuston toimivuuden ja käytön seuranta.",
+                    ],
+                },
+                {
+                    title: "Evästeet",
+                    paragraphs: [
+                        "Sivusto ei aseta evästeitä eikä käytä muita selaimeen tallentuvia tunnisteita. Siksi sivustolla ei ole evästebanneria.",
+                    ],
+                },
+                {
+                    title: "Palvelinlogit ja kolmannet osapuolet",
+                    paragraphs: [
+                        "Sivustoa ylläpidetään Vercelin alustalla, jonka palvelinlogeihin tallentuu lyhytaikaisesti tekninen tieto pyynnöistä, kuten IP-osoite. Projektien kuvat ladataan Contentfulin sisällönjakeluverkosta. Linkit GitHubiin ja LinkedIniin vievät kyseisten palvelujen sivuille, joilla on omat tietosuojakäytäntönsä.",
+                    ],
+                },
+                {
+                    title: "Oikeutesi",
+                    paragraphs: [
+                        "Sinulla on oikeus saada tietää, mitä tietoja sinusta käsitellään, sekä pyytää niiden oikaisua tai poistamista. Pyynnöt voi lähettää yllä olevaan sähköpostiosoitteeseen. Sinulla on myös oikeus tehdä valitus tietosuojavaltuutetulle (tietosuoja.fi).",
+                    ],
+                },
+            ],
         },
     },
     en: {
@@ -427,6 +479,7 @@ export const copy = {
             messagePlaceholder: "Briefly, what's it about?",
             privacyNote:
                 "Your details are only used to reply to your message.",
+            privacyLinkLabel: "Privacy",
             submit: "Send message →",
             sending: "Sending…",
             successTitle: "thanks for your message!",
@@ -450,6 +503,56 @@ export const copy = {
         footer: {
             copyright: "© 2026 laalo.dev — jyväskylä, fi",
             copyrightShort: "© 2026 laalo.dev",
+            privacy: "privacy",
+        },
+        privacy: {
+            metaTitle: "Privacy — Laalo Ceesay",
+            metaDescription:
+                "What laalo.dev processes and why: the contact form, cookieless visitor statistics, no cookies.",
+            heroMeta: "privacy ✦ updated 18 sep 2026",
+            heroTitle: "privacy",
+            intro: "This site is Laalo Ceesay's personal portfolio. It processes as little data as possible: it sets no cookies and does not track visitors individually.",
+            sections: [
+                {
+                    title: "Controller",
+                    paragraphs: [
+                        "Laalo Ceesay, Jyväskylä, Finland. Privacy enquiries: laaloceesay@gmail.com.",
+                    ],
+                },
+                {
+                    title: "Contact form",
+                    paragraphs: [
+                        "When you send a message through the form, I process the name, email address and message you provide. They are delivered to my mailbox through Google's Gmail service and kept there for as long as our correspondence requires.",
+                        "The legal basis is legitimate interest: replying to your enquiry. The data is not used for marketing and is not shared with anyone.",
+                        "Spam is filtered with a hidden form field, a submission-time check and a rate limit. No third parties or cookies are involved.",
+                    ],
+                },
+                {
+                    title: "Visitor statistics",
+                    paragraphs: [
+                        "Visits are counted with Vercel Web Analytics. It sets no cookies and stores nothing on your device. Visitors are distinguished by a server-side hash of the request that is discarded after 24 hours, so no individual can be identified.",
+                        "The statistics record the page URL, referrer, country and city, browser, operating system and device type. IP addresses are not stored. The legal basis is legitimate interest: monitoring that the site works and how it is used.",
+                    ],
+                },
+                {
+                    title: "Cookies",
+                    paragraphs: [
+                        "The site sets no cookies and uses no other identifiers stored in the browser, which is why there is no cookie banner.",
+                    ],
+                },
+                {
+                    title: "Server logs and third parties",
+                    paragraphs: [
+                        "The site is hosted on Vercel, whose server logs briefly record technical request data such as the IP address. Project images are served from Contentful's content delivery network. Links to GitHub and LinkedIn lead to those services, which have their own privacy policies.",
+                    ],
+                },
+                {
+                    title: "Your rights",
+                    paragraphs: [
+                        "You have the right to know what data about you is processed and to request its correction or deletion. Send requests to the email address above. You also have the right to lodge a complaint with the Finnish Data Protection Ombudsman (tietosuoja.fi).",
+                    ],
+                },
+            ],
         },
     },
 } as const;
