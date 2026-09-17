@@ -1,8 +1,16 @@
-import { Archivo, Instrument_Sans, JetBrains_Mono } from "next/font/google";
+import { Instrument_Sans, JetBrains_Mono } from "next/font/google";
+import localFont from "next/font/local";
 
-export const archivo = Archivo({
-    subsets: ["latin"],
-    axes: ["wdth"],
+/* Archivo is only ever used at weight 800 with font-stretch 115-118%, so
+   instead of Google's full variable file (wght 100-900 x wdth 62-125,
+   ~90 KB) we self-host an instance pinned to wght 800 with the wdth axis
+   kept at 100-125 (~26 KB, made with fontTools.varLib.instancer from the
+   same Google Fonts latin subset). Licence: app/fonts/Archivo-OFL.txt. */
+export const archivo = localFont({
+    src: "./fonts/archivo-800.woff2",
+    weight: "800",
+    style: "normal",
+    declarations: [{ prop: "font-stretch", value: "100% 125%" }],
     variable: "--font-archivo",
     display: "swap",
 });
