@@ -6,7 +6,10 @@ import { usePathname } from "next/navigation";
 import { copy, localePath, GITHUB_URL, LINKEDIN_URL, type Locale } from "@/content/copy";
 
 export default function Navbar({ locale }: { locale: Locale }) {
-    const pathname = usePathname();
+    /* During ISR regeneration on Vercel the root route is rendered as
+       "/index" (and "/en" as "/en/index"), so usePathname() returns that
+       instead of "/". Strip it, or the cached HTML links to /en/index → 404. */
+    const pathname = usePathname().replace(/\/index$/, "") || "/";
     const [open, setOpen] = useState(false);
     const t = copy[locale].nav;
 
